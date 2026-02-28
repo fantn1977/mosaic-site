@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Mosaic Works — The Science</title>
+  <meta name="description" content="What Mosaic measures, why we chose these signals, and what they might mean for you.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Zone bar styles (inlined from concept cards) */
+    .zone-row { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+    .zone-lbl { font-size:11px; color:var(--text-dim); width:44px; flex-shrink:0; }
+    .zone-track { flex:1; height:8px; background:#1e2a3a; border-radius:4px; overflow:hidden; }
+    .zone-fill { height:100%; border-radius:4px; }
+    .zone-time { font-size:11px; color:var(--text-dim); width:36px; text-align:right; flex-shrink:0; }
+    .zone-mult { font-size:10px; color:var(--text-dim); width:24px; text-align:right; flex-shrink:0; }
+    .z1{background:#3a7bd5;} .z2{background:#00c6ff;} .z3{background:#f7c948;} .z4{background:#ff8c42;} .z5{background:#ff5252;}
+    .workout-pair { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:24px 0; }
+    .workout-box { background:#0d1525; border-radius:14px; padding:20px; }
+    .workout-hdr { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
+    .workout-name { font-size:13px; font-weight:600; color:var(--text-sec); }
+    .trimp-badge { font-size:13px; font-weight:700; padding:4px 12px; border-radius:20px; }
+    .trimp-low { background:rgba(0,198,255,0.12); color:#00c6ff; }
+    .trimp-high { background:rgba(255,82,82,0.12); color:#ff5252; }
+    @media(max-width:560px){ .workout-pair{ grid-template-columns:1fr; } }
+
+    /* ACWR gauge */
+    .gauge-wrap { margin:24px 0; }
+    .gauge-track { display:flex; height:44px; border-radius:22px; overflow:hidden; position:relative; }
+    .seg { display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:600; color:rgba(255,255,255,0.45); letter-spacing:0.06em; text-transform:uppercase; }
+    .seg-under { background:#1e3a5f; width:20%; border-radius:22px 0 0 22px; }
+    .seg-ok    { background:#0d3d2e; width:40%; }
+    .seg-caution { background:#3d2a0d; width:25%; }
+    .seg-high  { background:#3d1010; width:15%; border-radius:0 22px 22px 0; }
+    .gauge-labels { display:flex; margin-top:10px; }
+    .gauge-label { display:flex; flex-direction:column; gap:2px; }
+    .gauge-label:nth-child(1){width:20%;} .gauge-label:nth-child(2){width:40%;} .gauge-label:nth-child(3){width:25%;} .gauge-label:nth-child(4){width:15%;}
+    .gl-range { font-size:10px; color:var(--text-dim); }
+    .gl-name { font-size:11px; font-weight:600; }
+    .gl-under{color:#3a7bd5;} .gl-ok{color:#2ecc71;} .gl-caution{color:#f7c948;} .gl-high{color:#ff5252;}
+    .load-pair { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+    .load-box { background:#0d1525; border-radius:14px; padding:20px; text-align:center; }
+    .load-period { font-size:11px; color:var(--text-dim); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.08em; }
+    .load-val { font-size:32px; font-weight:700; line-height:1; margin-bottom:4px; }
+    .load-desc { font-size:11px; color:#4a5568; }
+    .acute-val{color:#ff8c42;} .chronic-val{color:#00c6ff;}
+    .ratio-row { text-align:center; margin-bottom:20px; }
+    .ratio-num { font-size:44px; font-weight:800; color:#f7c948; }
+    .ratio-lbl { font-size:12px; color:var(--text-dim); }
+    @media(max-width:480px){ .load-pair{ grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Mosaic<span>.</span></a>
+    <div class="nav-links">
+      <a href="science.html">How It Works</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="index.html#early-access" class="btn btn--primary">Get Early Access</a>
+    </div>
+  </div>
+</nav>
+
+<section style="padding-top:140px;">
+  <div class="container">
+    <span class="label">The Science</span>
+    <h1 style="font-size:clamp(28px,5vw,48px); margin-bottom:16px;">What Mosaic Measures — And Why</h1>
+    <p style="font-size:18px; max-width:600px;">We didn't invent these signals. Exercise scientists did — some of them decades ago. We built Mosaic to surface them in a way that's actually useful. Here's what each one means.</p>
+  </div>
+</section>
+
+<!-- Mosaic Score -->
+<section>
+  <div class="container">
+    <div class="metric-card">
+      <span class="metric-tag">Core Signal</span>
+      <h3>The Mosaic Score</h3>
+      <p><strong style="color:var(--text);">What it is:</strong> A single number — 0 to 100 — reflecting how close you are to your personal peak across all the signals Mosaic tracks.</p>
+      <p><strong style="color:var(--text);">Why it matters:</strong> Most health scores compare you to a population average. Your Mosaic Score compares you to <em>you</em> — specifically to the best version of yourself the data has observed. That's a fundamentally different question.</p>
+      <p><strong style="color:var(--text);">What moves it:</strong> Sleep quality, training load, recovery trends, resting heart rate. The ranked drivers below your score show you exactly which ones shifted — and by how much.</p>
+      <p class="not-advice">Mosaic surfaces this number. What it means for your day is yours to interpret.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRIMP -->
+<section>
+  <div class="container">
+    <div class="metric-card">
+      <span class="metric-tag">Training Load</span>
+      <h3>TRIMP — Training Impulse</h3>
+      <p><strong style="color:var(--text);">What it is:</strong> A way of measuring how hard a workout actually was on your body. Not just how long. Not just how fast. How hard — weighted by intensity.</p>
+      <p><strong style="color:var(--text);">The plain English version:</strong> Thirty minutes at a casual pace is not the same as thirty minutes at your limit. TRIMP accounts for this. Time spent at high heart rate counts for significantly more than time spent at low heart rate — because that's how your body actually experiences effort.</p>
+      <p><strong style="color:var(--text);">The origin:</strong> Sports scientist Eric Banister developed this framework in the 1970s. It remains a gold standard for quantifying training stress because it reflects physiological reality, not just elapsed time.</p>
+
+      <div class="metric-viz">
+        <div class="workout-pair">
+          <div class="workout-box">
+            <div class="workout-hdr">
+              <span class="workout-name">Easy Run — 40 min</span>
+              <span class="trimp-badge trimp-low">TRIMP 38</span>
+            </div>
+            <div class="zone-row"><span class="zone-lbl">Z1</span><div class="zone-track"><div class="zone-fill z1" style="width:15%"></div></div><span class="zone-time">6 min</span><span class="zone-mult">×1</span></div>
+            <div class="zone-row"><span class="zone-lbl">Z2</span><div class="zone-track"><div class="zone-fill z2" style="width:75%"></div></div><span class="zone-time">30 min</span><span class="zone-mult">×2</span></div>
+            <div class="zone-row"><span class="zone-lbl">Z3</span><div class="zone-track"><div class="zone-fill z3" style="width:10%"></div></div><span class="zone-time">4 min</span><span class="zone-mult">×3</span></div>
+            <div class="zone-row"><span class="zone-lbl">Z4</span><div class="zone-track"><div class="zone-fill z4" style="width:0%"></div></div><span class="zone-time">0 min</span><span class="zone-mult">×5</span></div>
+            <div class="zone-row"><span class="zone-lbl">Z5</span><div class="zone-track"><div class="zone-fill z5" style="width:0%"></div></div><span class="zone-time">0 min</span><span class="zone-mult">×7</span></div>
+          </div>
+          <div class="workout-box">
+            <div class="workout-hdr">
+              <span class="workout-name">Intervals — 40 min</span>
+              <span class="trimp-badge trimp-high">TRIMP 187</span>
+            </div>
+            <div class="zone-row"><span class="zone-lbl">Z1</span><div class="zone-track"><div class="zone-fill z1" style="width:10%"></div></div><span class="zone-time">4 min</span><span class="zone-mult">×1</span></div>
+            <div class="zone-row"><span class="zone-lbl">Z2</span><div class="zone-track"><div class="zone-fill z2" style="width:20%"></div></div><span class="zone-time">8 min</span><span class="zone-mult">×2</span></div>
+            <div class="zone-row"><span class="zone-lbl">Z3</span><div class="zone-track"><div class="zone-fill z3" style="width:15%"></div></div><span class="zone-time">6 min</span><span class="zone-mult">×3</span></div>
+            <div class="zone-row"><span class="zone-lbl">Z4</span><div class="zone-track"><div class="zone-fill z4" style="width:30%"></div></div><span class="zone-time">12 min</span><span class="zone-mult">×5</span></div>
+            <div class="zone-row"><span class="zone-lbl">Z5</span><div class="zone-track"><div class="zone-fill z5" style="width:25%"></div></div><span class="zone-time">10 min</span><span class="zone-mult">×7</span></div>
+          </div>
+        </div>
+        <p style="font-size:13px; color:var(--text-dim); font-style:italic;">Your calendar said the same thing on both days — 40 minutes of activity. Your body did not have the same day. TRIMP is how Mosaic tells the difference.</p>
+      </div>
+
+      <p class="not-advice">Mosaic uses TRIMP to understand your effort history — not to tell you how hard to train.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ACWR -->
+<section>
+  <div class="container">
+    <div class="metric-card">
+      <span class="metric-tag">Workload Balance</span>
+      <h3>ACWR — Workload Ratio</h3>
+      <p><strong style="color:var(--text);">What it is:</strong> A comparison between what you've done in the last 7 days versus your average over the last 4 weeks.</p>
+      <p><strong style="color:var(--text);">The plain English version:</strong> Your body adapts to training over time. Your 4-week average represents what it's currently prepared for. Your 7-day load represents what you're asking of it right now. The ratio between them is a signal worth watching.</p>
+      <p><strong style="color:var(--text);">What the research suggests:</strong> A ratio in the moderate range generally reflects training within your current capacity. Ratios significantly above that range have been associated with increased injury risk in athletic populations.</p>
+
+      <div class="metric-viz">
+        <div class="load-pair">
+          <div class="load-box">
+            <div class="load-period">Last 7 days</div>
+            <div class="load-val acute-val">312</div>
+            <div class="load-desc">Acute load (TRIMP)</div>
+          </div>
+          <div class="load-box">
+            <div class="load-period">4-week average</div>
+            <div class="load-val chronic-val">218</div>
+            <div class="load-desc">Chronic load (TRIMP)</div>
+          </div>
+        </div>
+        <div class="ratio-row">
+          <div class="ratio-num">1.43</div>
+          <div class="ratio-lbl">Workload Ratio (312 ÷ 218)</div>
+        </div>
+        <div class="gauge-wrap">
+          <div class="gauge-track">
+            <div class="seg seg-under">Under</div>
+            <div class="seg seg-ok">Balanced</div>
+            <div class="seg seg-caution">Elevated</div>
+            <div class="seg seg-high">High</div>
+          </div>
+          <div class="gauge-labels">
+            <div class="gauge-label"><span class="gl-range">&lt; 0.8</span><span class="gl-name gl-under">Under</span></div>
+            <div class="gauge-label"><span class="gl-range">0.8 – 1.3</span><span class="gl-name gl-ok">Balanced</span></div>
+            <div class="gauge-label"><span class="gl-range">1.3 – 1.5</span><span class="gl-name gl-caution">Elevated</span></div>
+            <div class="gauge-label"><span class="gl-range">&gt; 1.5</span><span class="gl-name gl-high">High</span></div>
+          </div>
+        </div>
+        <p style="font-size:13px; color:var(--text-dim); font-style:italic; margin-top:12px;">This is a population-level research signal applied to your individual data. It's context, not a verdict.</p>
+      </div>
+
+      <p class="not-advice">Mosaic shows you where this ratio sits. It does not tell you what to do with that information.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Recovery -->
+<section>
+  <div class="container">
+    <div class="metric-card">
+      <span class="metric-tag">Recovery</span>
+      <h3>Recovery Status</h3>
+      <p><strong style="color:var(--text);">What it is:</strong> A reading of how well your body is bouncing back — based on overnight heart rate patterns, heart rate variability signals, and sleep data.</p>
+      <p><strong style="color:var(--text);">Why it matters:</strong> Training stress and life stress both cost your body something. Recovery Status reflects how well that bill is being paid. A body that isn't recovering isn't adapting — it's accumulating.</p>
+      <p class="not-advice">This is a signal, not a diagnosis. Many things affect recovery. Mosaic tracks the ones your devices can measure.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Baseline -->
+<section>
+  <div class="container">
+    <div class="metric-card">
+      <span class="metric-tag">Your Baseline</span>
+      <h3>Your Personal Baseline</h3>
+      <p><strong style="color:var(--text);">What it is:</strong> Not a chart average. Not a population benchmark. The peak that <em>your</em> data has actually observed — across all sources, over time.</p>
+      <p><strong style="color:var(--text);">Why it matters:</strong> Knowing you scored a 72 means almost nothing without context. Knowing you scored a 72 when your personal peak is 85 — and that you've been trending away from it for 11 days — means something.</p>
+      <p><strong style="color:var(--text);">How Mosaic builds it:</strong> Mosaic identifies your best sustained performance windows across your health history and uses them as the reference point for everything else. It updates as you change.</p>
+      <p class="not-advice">Your baseline is yours. It will evolve as you do.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Disclaimer -->
+<section>
+  <div class="container">
+    <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:28px 32px; max-width:640px;">
+      <h3 style="margin-bottom:12px; font-size:17px;">A note on what Mosaic doesn't do</h3>
+      <p style="font-size:14px;">Mosaic is not a medical device. It doesn't diagnose conditions, prescribe training plans, or tell you what your numbers mean for your health. These signals were selected because they have legitimate research foundations in exercise science and recovery physiology. We surface them because we believe people deserve to see real data about their own bodies — not just a colored circle and a mood emoji.</p>
+      <p style="font-size:14px;">What you do with that information is up to you.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <span class="label">Early Access</span>
+    <h2>Ready to see your numbers differently?</h2>
+    <p>Join the early access list. Be first when Mosaic launches.</p>
+    <a href="index.html#early-access" class="btn btn--primary btn--lg">Get Early Access</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Shadowline Ventures &nbsp;·&nbsp; <a href="index.html">Home</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy Policy</a></p>
+  </div>
+</footer>
+
+<script src="js/lock.js"></script>
+</body>
+</html>

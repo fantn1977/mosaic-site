@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACWR — Mosaic Visual Concept</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0a0e1a;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  .card {
+    background: #111827;
+    border: 1px solid #1e2d40;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 640px;
+    width: 100%;
+  }
+  .label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #00c6ff;
+    margin-bottom: 8px;
+  }
+  h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    font-size: 14px;
+    color: #6b7a99;
+    margin-bottom: 36px;
+    line-height: 1.5;
+  }
+
+  /* Ratio gauge */
+  .gauge-wrap {
+    margin-bottom: 32px;
+  }
+  .gauge-track {
+    position: relative;
+    height: 48px;
+    border-radius: 24px;
+    overflow: visible;
+    display: flex;
+  }
+  .zone-segment {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    position: relative;
+  }
+  .seg-low { background: #1e3a5f; border-radius: 24px 0 0 24px; width: 20%; }
+  .seg-ok { background: #0d3d2e; width: 40%; }
+  .seg-caution { background: #3d2a0d; width: 25%; }
+  .seg-high { background: #3d1010; border-radius: 0 24px 24px 0; width: 15%; }
+
+  .indicator {
+    position: absolute;
+    top: -8px;
+    width: 4px;
+    height: 64px;
+    border-radius: 2px;
+    background: #fff;
+    transform: translateX(-50%);
+    box-shadow: 0 0 12px rgba(255,255,255,0.5);
+  }
+  .indicator-label {
+    position: absolute;
+    top: -32px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    color: #0a0e1a;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+
+  /* Zone labels below */
+  .zone-labels {
+    display: flex;
+    margin-top: 12px;
+  }
+  .zone-label-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .zone-label-item:nth-child(1) { width: 20%; }
+  .zone-label-item:nth-child(2) { width: 40%; }
+  .zone-label-item:nth-child(3) { width: 25%; }
+  .zone-label-item:nth-child(4) { width: 15%; }
+  .zone-range { font-size: 11px; color: #6b7a99; }
+  .zone-name { font-size: 12px; font-weight: 600; }
+  .name-low { color: #3a7bd5; }
+  .name-ok { color: #2ecc71; }
+  .name-caution { color: #f7c948; }
+  .name-high { color: #ff5252; }
+
+  /* Load comparison */
+  .compare-wrap {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .load-block {
+    flex: 1;
+    background: #0d1525;
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+  }
+  .load-period { font-size: 11px; color: #6b7a99; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .load-value { font-size: 36px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+  .acute-val { color: #ff8c42; }
+  .chronic-val { color: #00c6ff; }
+  .load-desc { font-size: 11px; color: #4a5568; }
+
+  .ratio-display {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .ratio-num { font-size: 48px; font-weight: 800; color: #f7c948; }
+  .ratio-label { font-size: 12px; color: #6b7a99; margin-top: 4px; }
+
+  .divider {
+    border: none;
+    border-top: 1px solid #1e2d40;
+    margin: 24px 0;
+  }
+  .insight {
+    background: rgba(0,198,255,0.06);
+    border: 1px solid rgba(0,198,255,0.15);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 13px;
+    color: #9aa3b8;
+    line-height: 1.6;
+  }
+  .insight strong { color: #00c6ff; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="label">Workload Balance</div>
+  <h2>Are you doing more than your body is ready for?</h2>
+  <p class="subtitle">Your recent training compared to what your body has adapted to over the past 4 weeks.</p>
+
+  <!-- Load blocks -->
+  <div class="compare-wrap">
+    <div class="load-block">
+      <div class="load-period">Last 7 days</div>
+      <div class="load-value acute-val">312</div>
+      <div class="load-desc">Acute load (TRIMP)</div>
+    </div>
+    <div class="load-block">
+      <div class="load-period">4-week average</div>
+      <div class="load-value chronic-val">218</div>
+      <div class="load-desc">Chronic load (TRIMP)</div>
+    </div>
+  </div>
+
+  <!-- Ratio -->
+  <div class="ratio-display">
+    <div class="ratio-num">1.43</div>
+    <div class="ratio-label">Workload Ratio (312 ÷ 218)</div>
+  </div>
+
+  <!-- Gauge -->
+  <div class="gauge-wrap">
+    <div style="position:relative;">
+      <div class="gauge-track">
+        <div class="zone-segment seg-low">Under</div>
+        <div class="zone-segment seg-ok">Balanced</div>
+        <div class="zone-segment seg-caution">Elevated</div>
+        <div class="zone-segment seg-high">High</div>
+      </div>
+      <!-- Indicator at ~81% across (1.43 on a 0.4–1.8 scale) -->
+      <div class="indicator" style="left: 81%;">
+        <div class="indicator-label">You · 1.43</div>
+      </div>
+    </div>
+    <div class="zone-labels">
+      <div class="zone-label-item">
+        <span class="zone-range">&lt; 0.8</span>
+        <span class="zone-name name-low">Under</span>
+      </div>
+      <div class="zone-label-item">
+        <span class="zone-range">0.8 – 1.3</span>
+        <span class="zone-name name-ok">Balanced</span>
+      </div>
+      <div class="zone-label-item">
+        <span class="zone-range">1.3 – 1.5</span>
+        <span class="zone-name name-caution">Elevated</span>
+      </div>
+      <div class="zone-label-item">
+        <span class="zone-range">&gt; 1.5</span>
+        <span class="zone-name name-high">High</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="insight">
+    <strong>What this means:</strong> Your last 7 days were significantly heavier than your 4-week average. Your body may be adapting — or accumulating more than it can currently absorb. Mosaic surfaces this signal. How you respond is your call.
+  </div>
+</div>
+</body>
+</html>

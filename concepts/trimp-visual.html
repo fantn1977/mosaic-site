@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRIMP — Mosaic Visual Concept</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0a0e1a;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+  .card {
+    background: #111827;
+    border: 1px solid #1e2d40;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 640px;
+    width: 100%;
+  }
+  .label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #00c6ff;
+    margin-bottom: 8px;
+  }
+  h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+  .subtitle {
+    font-size: 14px;
+    color: #6b7a99;
+    margin-bottom: 36px;
+    line-height: 1.5;
+  }
+
+  /* Workout Rows */
+  .workouts { display: flex; flex-direction: column; gap: 24px; }
+  .workout { background: #0d1525; border-radius: 14px; padding: 20px 24px; }
+  .workout-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .workout-name { font-size: 13px; font-weight: 600; color: #9aa3b8; }
+  .trimp-badge {
+    font-size: 13px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+  .trimp-low { background: rgba(0,198,255,0.12); color: #00c6ff; }
+  .trimp-high { background: rgba(255,82,82,0.12); color: #ff5252; }
+
+  /* Zone bars */
+  .zone-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .zone-label { font-size: 11px; color: #6b7a99; width: 44px; flex-shrink: 0; }
+  .zone-bar-track {
+    flex: 1;
+    height: 8px;
+    background: #1e2a3a;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .zone-bar-fill { height: 100%; border-radius: 4px; transition: width 0.3s; }
+  .zone-time { font-size: 11px; color: #6b7a99; width: 36px; text-align: right; flex-shrink: 0; }
+  .multiplier { font-size: 10px; color: #6b7a99; width: 28px; text-align: right; flex-shrink: 0; }
+
+  /* Zone colors */
+  .z1 { background: #3a7bd5; }
+  .z2 { background: #00c6ff; }
+  .z3 { background: #f7c948; }
+  .z4 { background: #ff8c42; }
+  .z5 { background: #ff5252; }
+
+  .divider {
+    border: none;
+    border-top: 1px solid #1e2d40;
+    margin: 28px 0;
+  }
+  .insight {
+    background: rgba(0,198,255,0.06);
+    border: 1px solid rgba(0,198,255,0.15);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 13px;
+    color: #9aa3b8;
+    line-height: 1.6;
+  }
+  .insight strong { color: #00c6ff; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="label">Training Load</div>
+  <h2>Same time. Very different effort.</h2>
+  <p class="subtitle">TRIMP weights intensity exponentially — time at high heart rate counts far more than time at low heart rate.</p>
+
+  <div class="workouts">
+    <!-- Workout A: Easy 40min -->
+    <div class="workout">
+      <div class="workout-header">
+        <span class="workout-name">Easy Run — 40 min</span>
+        <span class="trimp-badge trimp-low">TRIMP 38</span>
+      </div>
+      <div class="zone-row">
+        <span class="zone-label">Z1</span>
+        <div class="zone-bar-track"><div class="zone-bar-fill z1" style="width:15%"></div></div>
+        <span class="zone-time">6 min</span>
+        <span class="multiplier">×1</span>
+      </div>
+      <div class="zone-row">
+        <span class="zone-label">Z2</span>
+        <div class="zone-bar-track"><div class="zone-bar-fill z2" style="width:75%"></div></div>
+        <span class="zone-time">30 min</span>
+        <span class="multiplier">×2</span>
+      </div>
+      <div class="zone-row">
+        <span class="zone-label">Z3</span>
+        <div class="zone-bar-track"><div class="zone-bar-fill z3" style="width:10%"></div></div>
+        <span class="zone-time">4 min</span>
+        <span class="multiplier">×3</span>
+      </div>
+      <div class="zone-row">
+        <span class="zone-label">Z4</span>
+        <div class="zone-bar-track"><div class="zone-bar-fill z4" style="width:0%"></div></div>
+        <span class="zone-time">0 min</span>
+        <span class="multiplier">×5</span>
+      </div>
+      <div class="zone-row">
+        <span class="zone-label">Z5</span>
+        <div class="zone-bar-track"><div class="zone-bar-fill z5" style="width:0%"></div></div>
+        <span class="zone-time">0 min</span>
+        <span class="multiplier">×7</span>
+      </div>
+    </div>
+
+    <!-- Workout B: Hard 40min -->
+    <div class="workout">
+      <div class="workout-header">
+        <span class="workout-name">Interval Session — 40 min</span>
+        <span class="trimp-badge trimp-high">TRIMP 187</span>
+      </div>
+      <div class="zone-row">
+        <span class="zone-label">Z1</span>
+        <div class="zone-bar-track"><div class="zone-bar-fill z1" style="width:10%"></div></div>
+        <span class="zone-time">4 min</span>
+        <span class="multiplier">×1</span>
+      </div>
+      <div class="zone-row">
+        <span class="zone-label">Z2</span>
+        <div class="zone-bar-track"><div class="zone-bar-fill z2" style="width:20%"></div></div>
+        <span class="zone-time">8 min</span>
+        <span class="multiplier">×2</span>
+      </div>
+      <div class="zone-row">
+        <span class="zone-label">Z3</span>
+        <div class="zone-bar-track"><div class="zone-bar-fill z3" style="width:15%"></div></div>
+        <span class="zone-time">6 min</span>
+        <span class="multiplier">×3</span>
+      </div>
+      <div class="zone-row">
+        <span class="zone-label">Z4</span>
+        <div class="zone-bar-track"><div class="zone-bar-fill z4" style="width:30%"></div></div>
+        <span class="zone-time">12 min</span>
+        <span class="multiplier">×5</span>
+      </div>
+      <div class="zone-row">
+        <span class="zone-label">Z5</span>
+        <div class="zone-bar-track"><div class="zone-bar-fill z5" style="width:25%"></div></div>
+        <span class="zone-time">10 min</span>
+        <span class="multiplier">×7</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="insight">
+    <strong>Why this matters:</strong> Your calendar said the same thing on both days — 40 minutes of activity. Your body did not have the same day. TRIMP is how Mosaic tells the difference.
+  </div>
+</div>
+</body>
+</html>
