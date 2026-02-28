@@ -379,11 +379,7 @@ footer a:hover { color: var(--text-sec); }
   border-bottom: 1px solid #1a2335;
   transition: color 0.2s, background 0.2s;
 }
-.nav-mobile-menu a:last-child {
-  border-bottom: none;
-  color: #00c6ff;
-  margin-top: 4px;
-}
+.nav-mobile-menu a:last-child { border-bottom: none; }
 .nav-mobile-menu a:hover { color: #fff; background: rgba(255,255,255,0.04); }
 .nav-mobile-menu.open { display: flex; }
 
