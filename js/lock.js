@@ -5,7 +5,7 @@
  */
 
 (function () {
-  const PREVIEW_PASSWORD = 'mosaic2026'; // ← change this
+  const PREVIEW_PASSWORD = 'mobuddy1@'; // ← change this
   const COOKIE_NAME      = 'mosaic_preview';
   const COOKIE_DAYS      = 7;
 
