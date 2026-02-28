@@ -329,6 +329,8 @@ footer a:hover { color: var(--text-sec); }
 
 /* ── Responsive ── */
 @media (max-width: 600px) {
+  .nav-links a:not(.btn) { display: none; }
+  .nav-links .btn { padding: 8px 14px !important; font-size: 13px !important; border-radius: 8px; }
   section { padding: 60px 0; }
   .hero { padding: 120px 0 72px; }
   .answer-card { flex-direction: column; gap: 12px; padding: 24px 20px; }
