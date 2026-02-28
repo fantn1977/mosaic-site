@@ -185,50 +185,23 @@
 </footer>
 
 <script>
-  // Simple form success handling
-  const form = document.getElementById('waitlist-form');
-  const success = document.getElementById('form-success');
-  if (form) {
-    form.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const data = new FormData(form);
-      try {
-        const res = await fetch(form.action, {
-          method: 'POST',
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
-        if (res.ok) {
-          form.style.display = 'none';
-          success.style.display = 'block';
-          document.querySelector('.form-note').style.display = 'none';
-        }
-      } catch(err) {
-        // fallback — let the form submit normally
-        form.submit();
-      }
-    });
-  }
-</script>
-
-<script>
-  const hbg = document.getElementById("nav-hamburger");
-  const menu = document.getElementById("nav-mobile-menu");
+  var hbg = document.getElementById('nav-hamburger');
+  var menu = document.getElementById('nav-mobile-menu');
   if (hbg) {
-    hbg.addEventListener("click", function() {
-      hbg.classList.toggle("open");
-      menu.classList.toggle("open");
+    hbg.addEventListener('click', function() {
+      hbg.classList.toggle('open');
+      menu.classList.toggle('open');
     });
-    menu.querySelectorAll("a").forEach(function(a) {
-      a.addEventListener("click", function() {
-        hbg.classList.remove("open");
-        menu.classList.remove("open");
+    menu.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        hbg.classList.remove('open');
+        menu.classList.remove('open');
       });
     });
-    document.addEventListener("click", function(e) {
-      if (!hbg.contains(e.target) <script src="js/lock.js"></script><script src="js/lock.js"></script> !menu.contains(e.target)) {
-        hbg.classList.remove("open");
-        menu.classList.remove("open");
+    document.addEventListener('click', function(e) {
+      if (!hbg.contains(e.target) && !menu.contains(e.target)) {
+        hbg.classList.remove('open');
+        menu.classList.remove('open');
       }
     });
   }
