@@ -43,3 +43,4 @@ Free tier: 50 submissions/month. Upgrade if needed.
 - No build step, no dependencies, no frameworks
 - All health data stays on device — no backend needed for the app
 - Privacy policy email: update `privacy@mosaicscore.app` once email is configured
+# Mosaic Site
